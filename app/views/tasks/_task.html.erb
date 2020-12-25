@@ -1,0 +1,11 @@
+<li class="task" data-controller="task" data-action="click->task#handleClick" data-task-id-value="<%= task.id %>">
+  <h3>
+    <span class="checkbox"></span>
+    <%= task.title %>
+  </h3>
+  <p><%= task.description %></p>
+</li>
+
+<!-- <td><%= link_to 'Show', task %></td>
+<td><%= link_to 'Edit', edit_task_path(task) %></td>
+<td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->

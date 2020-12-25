@@ -1,0 +1,84 @@
+/* tailwind */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+input, textarea, button {
+  @apply focus:outline-none;
+}
+
+.section-title {
+  @apply flex items-center mb-2;
+  
+  svg {
+    @apply h-6 w-6 mr-1 fill-current;  
+  }
+  
+  span {
+    @apply font-semibold text-lg ml-1;    
+  }
+}
+
+li.task {
+  @apply px-2 py-1 rounded;
+  
+  h3 {
+    @apply flex items-center text-gray-700;
+  }
+  
+  .checkbox {
+    @apply w-4 h-4 border border-gray-300 rounded mr-2;  
+  }
+  
+  &.selected {
+    @apply bg-blue-100;  
+    
+    .checkbox {
+      @apply border-gray-400;    
+    }
+  }
+}
+
+.estimate-select {
+  @apply rounded text-sm text-gray-700 font-medium bg-gray-100 flex flex-row overflow-hidden border border-gray-200 box-border select-none;
+  
+  .button {
+    @apply block w-7 text-center py-1 px-2 border-gray-200 cursor-pointer hover:bg-gray-200;
+    
+    &.left {
+      @apply border-r;
+    }
+    
+    &.right {
+      @apply border-l;
+    }
+  }
+  
+  .value {
+    @apply block py-1 px-2;
+  }
+}
+
+.action-bar {
+  @apply bg-gray-800 text-white rounded-md opacity-90 flex flex-row divide-x divide-gray-600;
+  
+  &.inactive {
+    display: none;
+  }
+  
+  button {
+    @apply font-semibold text-sm px-4 py-2 flex flex-row items-center space-x-1 hover:bg-gray-700 transition-colors;
+    
+    &:first-child {
+      @apply rounded-l-md;
+    }
+    
+    &:last-child {
+      @apply rounded-r-md;
+    }
+    
+    svg {
+      @apply h-4 w-4;
+    }
+  }
+}

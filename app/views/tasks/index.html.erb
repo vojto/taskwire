@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<section class="mb-6">
+  <h2 class="section-title">
+    <%= heroicon "lightning-bolt", class: "text-yellow-500" %>
+    <span>Current</span>
+  </h2>
+  
+  <ul class="pl-6 space-y-1">
+    <% @tasks.each do |task| %>
+      <%= render task %>
+    <% end %>
+    
+    <li class="py-1">
+      <div class="px-2">
+        <%= turbo_frame_tag 'create_task' do %>
+          <a href="<%= new_task_path %>" class="flex items-center text-gray-300">
+            <span class="w-4 h-4 border border-gray-300 rounded mr-2">
+
+            </span>
+            Add new task
+          </a>
+        <% end %>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<section class="mb-6">
+  <h2 class="section-title">
+    <%= heroicon "collection", class: "text-blue-500" %>
+    <span>Next</span>
+  </h2>
+</section>
+
+<section class="mb-6">
+  <h2 class="section-title">
+    <%= heroicon "clock", class: "text-gray-500" %>
+    <span>Waiting</span>
+  </h2>
+</section>
+
+<section class="mb-6">
+  <h2 class="section-title">
+    <%= heroicon "calendar", class: "text-green-500" %>
+    <span>Someday</span>
+  </h2>
+</section>
+
+
+

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html class="h-full">
+  <head>
+    <title>Taskwire</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbo-track': 'reload' %>
+  	<%= stylesheet_pack_tag 'application',  media: 'all', 'data-turbo-track': 'reload'  %>
+    <%= yield :head %>
+    
+  </head>
+
+  <body class="h-full font-sans">
+    <div class="h-full flex flex-row">
+      <div class="w-64 bg-gray-100 p-4">sidebar</div>
+      <div class="p-12 bg-gray-50 flex-grow overflow-auto" data-controller="main-pane" data-action="click->main-pane#handleClick"><%= yield %></div>
+    </div>
+    
+    <div class="absolute bottom-12 left-0 right-0 flex flex-row justify-center">
+      <div class="action-bar" data-controller="action-bar">
+        <button>
+          <%= heroicon "trash" %>
+          <span>Delete (0)</span>
+        </button>
+        
+        <button>
+          <%= heroicon "arrow-circle-right" %>
+          <span>Move (0)</span>
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
