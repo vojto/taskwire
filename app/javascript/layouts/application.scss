@@ -19,6 +19,10 @@ input, textarea, button {
   }
 }
 
+ul.task-list {
+  @apply pl-6 space-y-1;
+}
+
 li.task {
   @apply px-2 py-1 rounded;
   

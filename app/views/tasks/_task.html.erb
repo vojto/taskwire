@@ -1,7 +1,12 @@
 <li class="task" data-controller="task" data-action="click->task#handleClick" data-task-id-value="<%= task.id %>">
   <h3>
     <span class="checkbox"></span>
-    <%= task.title %>
+    <span><%= task.title %></span>
+    <div class="flex-grow"></div>
+    
+    <div class="w-13">
+      <span class="text-sm rounded px-1 py <%= colors_for_estimate(task.estimate).join(" ") %>"><%= format_estimate(task.estimate) %></span>
+    </div>
   </h3>
   <p><%= task.description %></p>
 </li>

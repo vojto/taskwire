@@ -1,7 +1,19 @@
 import { Controller } from "stimulus"
 import {previousItem, nextItem} from "../helpers/array_helpers";
 
-const STEPS = [10, 20, 30, 60, 90, 120];
+const STEPS = [0, 10, 20, 30, 60, 90, 120];
+
+const formatEstimate = (estimate) => {
+  if (estimate === 0) {
+    return "No estimate";
+  }
+  
+  const hours = Math.floor(estimate / 60);
+  const minutes = estimate % 60;
+  
+  return (hours > 0 ? `${hours}h ` : "") +
+         (minutes > 0 ? `${minutes}m` : "");
+}
 
 export default class extends Controller {
   static targets = ["value", "input"];
@@ -14,6 +26,8 @@ export default class extends Controller {
   }
   
   connect() {  
+    // TODO: Read estimate from input
+    
     // console.log("current value:", this.inputTarget.value);
     
     // this.estimate = +this.inputTarget.value;
@@ -23,12 +37,7 @@ export default class extends Controller {
   }
   
   update() {
-    const hours = Math.floor(this.estimate / 60);
-    const minutes = this.estimate % 60;
-    
-    this.valueTarget.innerText =
-      (hours > 0 ? `${hours}h ` : "") +
-      (minutes > 0 ? `${minutes}m` : "");
+    this.valueTarget.innerText = formatEstimate(this.estimate);
       
     this.inputTarget.value = this.estimate;
   }
@@ -42,5 +51,5 @@ export default class extends Controller {
     this.estimate = nextItem(STEPS, this.estimate);
     this.update();
   }
-
 }
+
