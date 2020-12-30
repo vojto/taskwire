@@ -1,13 +1,14 @@
 import {tasks} from "../stores/tasks_store";
 import ConnectedController from "./connected_controller";
+import {Turbo} from "@hotwired/turbo-rails"
 
 
 class TaskController extends ConnectedController {
-  static values = {id: String};
+  static values = {id: String, editUrl: String};
+  static targets = ["editLink"];
   
   constructor(context) {
     super(context);
-    this.unsub = [];
   }
   
   subscribe() {
@@ -17,9 +18,19 @@ class TaskController extends ConnectedController {
   }
   
   handleClick(ev) {
-    ev.stopPropagation();
+    if (ev.target != this.editLinkTarget) {
+      ev.stopPropagation();  
+    }
+    
     tasks.setState({selectedId: this.idValue});
     this.update();
+  }
+  
+  handleDoubleClick() {
+    // console.log("edit link:", this.editLinkTarget);
+    this.editLinkTarget.click();
+    // const url = this.editUrlValue;
+    // Turbo.visit(url);
   }
   
   update() {

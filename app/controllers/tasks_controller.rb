@@ -42,7 +42,7 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
+        format.html { redirect_to tasks_path }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit }
@@ -58,6 +58,21 @@ class TasksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+  
+  # GET /tasks/batch_destroy?ids=1,2,3,4
+  def batch_destroy
+    unless params[:ids]
+      raise ActionController::BadRequest.new(), "missing ids param"
+    end
+    
+    ids = params[:ids].split(",").map(&:to_i)
+    
+    Task.where(:id => ids).destroy_all
+    
+    respond_to do |format|
+      format.html { redirect_to tasks_path }
     end
   end
 

@@ -10,7 +10,7 @@ export default class extends Controller {
   }
   
   disconnect() {
-    for (const unsub in this.unsubscribes) {
+    for (const unsub of this.unsubscribes) {
       unsub();
     }
   }

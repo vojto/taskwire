@@ -1,6 +1,8 @@
 <h1>Editing Task</h1>
 
-<%= render 'form', task: @task %>
+<%= turbo_frame_tag "edit_task_#{@task.id}" do %>
+	<%= render 'form', task: @task %>
+<% end %>
 
 <%= link_to 'Show', @task %> |
 <%= link_to 'Back', tasks_path %>

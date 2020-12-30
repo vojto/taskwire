@@ -1,16 +1,25 @@
-<li class="task" data-controller="task" data-action="click->task#handleClick" data-task-id-value="<%= task.id %>">
-  <h3>
-    <span class="checkbox"></span>
-    <span><%= task.title %></span>
-    <div class="flex-grow"></div>
-    
-    <div class="w-13">
-      <span class="text-sm rounded px-1 py <%= colors_for_estimate(task.estimate).join(" ") %>"><%= format_estimate(task.estimate) %></span>
-    </div>
-  </h3>
-  <p><%= task.description %></p>
-</li>
+<%= turbo_frame_tag "edit_task_#{task.id}" do %>
 
-<!-- <td><%= link_to 'Show', task %></td>
-<td><%= link_to 'Edit', edit_task_path(task) %></td>
-<td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+  <li
+    class="task"
+    data-controller="task"
+    data-action="click->task#handleClick dblclick->task#handleDoubleClick"
+    data-task-id-value="<%= task.id %>"
+    data-task-edit-url-value="<%= edit_task_path(task) %>"
+  >
+    <h3>
+      <span class="checkbox"></span>
+      <span><%= task.title %></span>
+      
+      <a class="hidden pl-2 text-blue-500 underline" href="<%= edit_task_path(task) %>" data-task-target="editLink">edit</a>
+      
+      <div class="flex-grow"></div>
+      
+      <div class="w-13">
+        <span class="text-sm rounded px-1 py <%= colors_for_estimate(task.estimate).join(" ") %>"><%= format_estimate(task.estimate) %></span>
+      </div>
+    </h3>
+    <p><%= task.description %></p>
+  </li>
+
+<% end %>

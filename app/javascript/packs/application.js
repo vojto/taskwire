@@ -12,7 +12,7 @@ import { definitionsFromContext } from "stimulus/webpack-helpers"
 
 ActiveStorage.start()
 Turbo.start()
-Turbo.setProgressBarDelay(0);
+Turbo.setProgressBarDelay(500);
 
 const application = Application.start()
 const context = require.context("../controllers", true, /\.js$/)
